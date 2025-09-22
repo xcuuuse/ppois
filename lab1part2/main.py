@@ -1,3 +1,8 @@
+"""
+@file main.py
+@brief Program file that is executed
+"""
+
 from CLASSES import Polynomial
 
 
@@ -10,8 +15,8 @@ def input_polynomial(name: str):
         degree = int(input(f"Enter degree for {name} polynomial: "))
         coefficients = list(map(int, input(f"Enter coefficients for {name} polynomial: ").split()))
         pol = Polynomial(degree, coefficients)
-        if not check_size(degree, coefficients):
-            print("Try again")
+        if not check_size(degree, coefficients) or degree <= 0:
+            print("Wrong input, try again")
         else:
             return pol
 

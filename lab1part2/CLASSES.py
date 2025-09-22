@@ -1,16 +1,73 @@
+"""
+@file CLASSES.py
+@brief Polynomial realisation
+@author Yevik A. 421702
+@see Polynomial
+"""
+
+
 class Polynomial:
+    """!
+        @brief Polynomial class
+        @details Sets the degree, the list of coefficients and dictionary for operations
+        @see Polynomial.show_polynomial
+        @see Polynomial.count_polynomial
+        @see Polynomial.polynomial_operations
+        @see Polynomial.polynomial_multiplication
+        @see Polynomial.polynomial_division
+        """
     def __init__(self, degree: int, coefficients: list):
-        self.degree = degree
-        self.coefficients = coefficients
-        self.dictionary = {}
-        for index, value in enumerate(self.coefficients):
-            free = self.degree - index
+        """
+        @brief Constructor
+        :param degree: Polynomial degree
+        :param coefficients: Polynomial coefficients
+        @see Polynomial.degree
+        @see Polynomial.coefficients
+        @see Polynomial.dictionary
+        """
+        self.__degree = degree
+        self.__coefficients = coefficients
+        self.__dictionary = {}
+        for index, value in enumerate(self.__coefficients):
+            free = self.__degree - index
             if value != 0:
-                self.dictionary[free] = value
+                self.__dictionary[free] = value
+
+    @property
+    def degree(self):
+        """
+        @brief Degree getter
+        :return: polynomial degree
+        @see Polynomial.coefficients
+        @see Polynomial.dictionary
+        """
+        return self.__degree
+
+    @property
+    def dictionary(self):
+        """
+        @brief Dictionary getter
+        :return: operation dictionary
+        """
+        return self.__dictionary
+
+    @property
+    def coefficients(self):
+        """
+        @brief Coefficients getter
+        :return: the list of coefficients
+        """
+        return self.__coefficients
 
     def show_polynomial(self):
+        """
+        @brief A method used to show the polynomial in math form
+        :return: A string that represents the polynomial
+        @see Polynomial.count_polynomial
+        @see Polynomial.polynomial_operations
+        """
         final = ""
-        for degree, value in self.dictionary.items():
+        for degree, value in self.__dictionary.items():
             if value == 0:
                 continue
             final += f"{value}x^{degree} + "
@@ -22,13 +79,28 @@ class Polynomial:
         return final
 
     def count_polynomial(self, number):
+        """
+        @brief A method to count the polynomial value
+        :param number: A number to count the polynomial value with
+        :return: Value of a polynomial
+        @see Polynomial.show_polynomial
+        """
         result = 0
-        for key, value in self.dictionary.items():
+        for key, value in self.__dictionary.items():
             result += value * (number ** key)
         return result
 
     @classmethod
     def polynomial_operations(cls, pol1, pol2, choice):
+        """
+        @brief A method that allows to make operations sum and difference
+        :param pol1: First polynomial
+        :param pol2: Second polynomial
+        :param choice: Str "s" or "d" depends on operation
+        :return: Result of an operation
+        @see Polynomial.polynomial_multiplication
+        @see Polynomial.polynomial_division
+        """
         result = {}
         for degree, value in pol1.dictionary.items():
             result[degree] = value
@@ -50,6 +122,14 @@ class Polynomial:
 
     @classmethod
     def polynomial_multiplication(cls, pol1, pol2):
+        """
+        @brief A method that allows to multiply polynomials
+        :param pol1: First polynomial
+        :param pol2: Second polynomial
+        :return: Multiplication
+        @see Polynomial.polynomial_operations
+        @see Polynomial.polynomial_division
+        """
         result = {}
         max_degree = max(pol1.dictionary.keys()) + max(pol2.dictionary.keys())
         for i in range(max_degree, -1, -1):
@@ -65,6 +145,14 @@ class Polynomial:
 
     @classmethod
     def polynomial_division(cls, pol1, pol2):
+        """
+        @brief A method that allows to divide polynomials
+        :param pol1: First polynomial
+        :param pol2: Second polynomial
+        :return: Division
+        @see Polynomial.polynomial_operations
+        @see Polynomial.polynomial_multiplication
+        """
         dividend = pol1.dictionary.copy()
         divisor = pol2.dictionary.copy()
         final = {}

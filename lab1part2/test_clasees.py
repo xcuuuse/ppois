@@ -1,3 +1,8 @@
+"""
+@file test_classes.py
+@brief Tests for Polynomial class
+"""
+
 from CLASSES import Polynomial
 
 
@@ -42,4 +47,3 @@ def test_division():
     pol2 = Polynomial(1, [1, 1])
     pol_div = Polynomial.polynomial_division(pol1, pol2)
     assert pol_div == "x + 1; 2"
-
