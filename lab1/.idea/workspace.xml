@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7ba6194-dd44-418d-a83d-b15040f05569" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CLASSES.py" beforeDir="false" afterPath="$PROJECT_DIR$/CLASSES.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab1part2/.coverage" beforeDir="false" afterPath="$PROJECT_DIR$/../lab1part2/.coverage" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab1part2/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab1part2/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../lab1part2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab1part2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab1part2/CLASSES.py" beforeDir="false" afterPath="$PROJECT_DIR$/../lab1part2/CLASSES.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab1part2/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../lab1part2/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lab1part2/test_clasees.py" beforeDir="false" afterPath="$PROJECT_DIR$/../lab1part2/test_clasees.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +23,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8

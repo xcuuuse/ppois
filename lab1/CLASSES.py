@@ -19,6 +19,13 @@ class Game:
         self.__field = [['.' for _ in range(field_size)] for _ in range(field_size)]
         self.__symbol = 'X'
 
+    def __getitem__(self, pos):
+        row, column = pos
+        if 0 <= row < self.__field_size and 0 <= column < self.__field_size:
+            return self.__field[row][column]
+        else:
+            raise IndexError("Invalid coordinates")
+
     def get_symbol(self):
         """
         @brief Symbol getter
