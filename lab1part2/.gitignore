@@ -1,7 +1,7 @@
 *
 
 !.gitignore
-!CLASSES.py
+!classes.py
 !main.py
-!test_classes.py
+!test_classes.py 
 !latex_2.pdf

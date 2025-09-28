@@ -1,7 +1,7 @@
 """
-@file CLASSES.py
+@file classes.py
 @brief Tic-Tac-Toe game realisation
-@author Yevik A. 421702
+@author A. 421702
 """
 
 
@@ -20,61 +20,43 @@ class Game:
         self.__symbol = 'X'
 
     def __getitem__(self, pos):
+
         row, column = pos
         if 0 <= row < self.__field_size and 0 <= column < self.__field_size:
             return self.__field[row][column]
         else:
             raise IndexError("Invalid coordinates")
 
-    def get_symbol(self):
+    def __setitem__(self, key, value):
         """
-        @brief Symbol getter
-        @details A method to get the current game symbol
-        :return: str game symbol
+        @brief Set item method
+        @details Allows to use () operator to set a cell symbol
         """
+        row, column = key
+        if 0 <= row < self.__field_size and 0 <= column < self.__field_size:
+            self.__field[row][column] = value
+        else:
+            raise IndexError("Invalid coordinates")
+
+    @property
+    def symbol(self):
+
         return self.__symbol
 
-    def get_field(self):
-        """
-        @brief Field getter
-        @details A method to get the field
-        :return: List[list] game field
-        """
+    @property
+    def field(self):
         return self.__field.copy()
 
-    def get_field_size(self):
-        """
-        @brief Field size getter
-        @details A method to get the size
-        :return: int field size
-        """
+    @property
+    def field_size(self):
         return self.__field_size
-
-    def set_field(self, row, column, symbol):
-        """
-        @brief Field cell setter
-        :param row: row
-        :param column: column
-        :param symbol: symbol
-        """
-        self.__field[row][column] = symbol
-
-    def show_field(self):
-        """
-        @brief Show field
-        @details A method to show the game field
-        """
-        for i in range(self.__field_size):
-            for j in range(self.__field_size):
-                print(self.__field[i][j], end=' ')
-            print('\n')
 
     def next_move(self):
         """
         @brief Game next move
         @details Implements players turn change mechanics
         """
-        self.__symbol = 'X' if self.__symbol == 'O' else 'O'
+        self.__symbol = 'X' if self.symbol == 'O' else 'O'
 
     def turn(self, row: int, column: int):
         """
@@ -86,14 +68,14 @@ class Game:
         @see game_winner
         """
         if 0 <= row < self.__field_size and 0 <= column < self.__field_size:
-            if self.__field[row][column] == '.':
-                self.__field[row][column] = self.__symbol
+            if self[row, column] == '.':
+                self[row, column] = self.symbol
             else:
                 print("The cell is occupied")
-                Game.next_move(self)
+                self.next_move()
         else:
             print("Invalid coordinates")
-            Game.next_move(self)
+            self.next_move()
 
     def game_winner(self):
         """
@@ -103,13 +85,11 @@ class Game:
         @see turn
         """
         for i in range(self.__field_size):
-            if self.__field[i] == [self.__symbol] * self.__field_size:
+            if [self[i, j] for j in range(self.field_size)] == [self.symbol] * self.field_size:
                 return True
-            if [self.__field[j][i] for j in range(self.__field_size)] == [self.__symbol] * self.__field_size:
+            if [self[j, i] for j in range(self.field_size)] == [self.symbol] * self.field_size:
                 return True
-        if [self.__field[i][i] for i in range(self.__field_size)] == [self.__symbol] * self.__field_size:
-            return True
-        size = self.__field_size
-        if [self.__field[i][size-i-1]for i in range(size)] == [self.__symbol]*self.__field_size:
-            return True
-        return False
+            if [self[j, j] for j in range(self.field_size)] == [self.symbol] * self.field_size:
+                return True
+            if [self[j, self.field_size - j - 1] for j in range(self.field_size)] == [self.symbol] * self.field_size:
+                return True

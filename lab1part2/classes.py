@@ -1,5 +1,5 @@
 """
-@file CLASSES.py
+@file classes.py
 @brief Polynomial realisation
 @author Yevik A. 421702
 @see Polynomial
@@ -7,15 +7,6 @@
 
 
 class Polynomial:
-    """!
-        @brief Polynomial class
-        @details Sets the degree, the list of coefficients and dictionary for operations
-        @see Polynomial.show_polynomial
-        @see Polynomial.count_polynomial
-        @see Polynomial.polynomial_operations
-        @see Polynomial.polynomial_multiplication
-        @see Polynomial.polynomial_division
-        """
     def __init__(self, degree: int, coefficients: list):
         """
         @brief Constructor
@@ -59,6 +50,99 @@ class Polynomial:
         """
         return self.__coefficients
 
+    def __getitem__(self, degree):
+        """
+        @brief Get item method
+        @details A method that allows to use () operator to get the value of a coefficient
+        :param degree: Polynomial element degree
+        :return: Polynomial coefficient
+        """
+        return self.dictionary.get(degree, 0)
+
+    def __call__(self, number):
+        """
+        @brief Call method
+        @details A method that allows to count polynomial value using ()
+        :param number: A number to count polynomial value with
+        :return: The result of an operation
+        """
+        result = 0
+        for degree, coefficient in self.dictionary.items():
+            result += coefficient * (number ** degree)
+        return result
+
+    def __add__(self, other):
+        """
+        @brief Add method
+        @details A method that allows using "+" operator on polynomials
+        :return: A polynomial sum method
+        """
+        return Polynomial.__polynomial_operations(self, other, "s")
+
+    def __iadd__(self, other):
+        """
+        @brief Add and update method
+        @details A method that allows using "+=" operator on polynomials
+        :return: Updated polynomial
+        """
+        final = Polynomial.__polynomial_operations(self, other, "s")
+        self.__init__(final.degree, final.coefficients)
+        return self
+
+    def __sub__(self, other):
+        """
+        @brief Difference method
+        @details A method that allows using "-" operator on polynomials
+        :return: A polynomial difference method
+        """
+        return Polynomial.__polynomial_operations(self, other, "d")
+
+    def __isub__(self, other):
+        """
+        @brief Subtract and update method
+        @details A method that allows using "-=" operator on polynomials
+        :return: Updated polynomial
+        """
+        final = Polynomial.__polynomial_operations(self, other, "d")
+        self.__init__(final.degree, final.coefficients)
+        return self
+
+    def __mul__(self, other):
+        """
+        @brief Multiplication method
+        @details A method that allows using "*" operator on polynomials
+        :return: A polynomial multiplication method
+        """
+        return Polynomial.__polynomial_multiplication(self, other)
+
+    def __imul__(self, other):
+        """
+        @brief Multiply and update method
+        @details A method that allows using "*=" operator on polynomials
+        :return: Updated polynomial
+        """
+        final = Polynomial.__polynomial_multiplication(self, other)
+        self.__init__(final.degree, final.coefficients)
+        return final
+
+    def __truediv__(self, other):
+        """
+        @brief Division method
+        @details A method that allows using "/" operator on polynomials
+        :return: A polynomial division method
+        """
+        return Polynomial.__polynomial_division(self, other)
+
+    def __itruediv__(self, other):
+        """
+        brief Divide and update method
+        @details A method that allows using "/=" operator on polynomials
+        :return: Updated polynomial
+        """
+        final = Polynomial.__polynomial_division(self, other)
+        self.__init__(final.degree, final.coefficients)
+        return final
+
     def show_polynomial(self):
         """
         @brief A method used to show the polynomial in math form
@@ -78,20 +162,8 @@ class Polynomial:
         final = final[:-3]
         return final
 
-    def count_polynomial(self, number):
-        """
-        @brief A method to count the polynomial value
-        :param number: A number to count the polynomial value with
-        :return: Value of a polynomial
-        @see Polynomial.show_polynomial
-        """
-        result = 0
-        for key, value in self.__dictionary.items():
-            result += value * (number ** key)
-        return result
-
     @classmethod
-    def polynomial_operations(cls, pol1, pol2, choice):
+    def __polynomial_operations(cls, pol1, pol2, choice):
         """
         @brief A method that allows to make operations sum and difference
         :param pol1: First polynomial
@@ -121,7 +193,7 @@ class Polynomial:
         return final_sum
 
     @classmethod
-    def polynomial_multiplication(cls, pol1, pol2):
+    def __polynomial_multiplication(cls, pol1, pol2):
         """
         @brief A method that allows to multiply polynomials
         :param pol1: First polynomial
@@ -144,7 +216,7 @@ class Polynomial:
         return final
 
     @classmethod
-    def polynomial_division(cls, pol1, pol2):
+    def __polynomial_division(cls, pol1, pol2):
         """
         @brief A method that allows to divide polynomials
         :param pol1: First polynomial
@@ -167,11 +239,4 @@ class Polynomial:
                     del dividend[power]
         quotient_degree = max(final.keys()) if final else 0
         quotient_coefficients = [final.get(i, 0) for i in range(quotient_degree, -1, -1)]
-        quotient = Polynomial(quotient_degree, quotient_coefficients)
-        if dividend:
-            remainder_degree = max(dividend.keys())
-            remainder_coefficients = [dividend.get(i, 0) for i in range(remainder_degree, -1, -1)]
-            remainder = Polynomial(remainder_degree, remainder_coefficients)
-        else:
-            remainder = Polynomial(0, [0])
-        return f"{quotient.show_polynomial()}; {remainder.show_polynomial()}"
+        return Polynomial(quotient_degree, quotient_coefficients)

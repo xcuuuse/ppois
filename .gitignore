@@ -1,7 +1,28 @@
 
-*
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-!.gitignore
+**/venv/
+**/env/
+**/.env/
 
-!*/**/*.py
-!*/**/*.pdf
+*.log
+*.sqlite3
+
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+lab1/*
+!lab1/*.py
+!lab1/**/*.py
+!lab1/docs
+
+
+lab1part2/*
+!lab1part2/*.py
+!lab1part2/**/*.py
+!lab1part2/docs
