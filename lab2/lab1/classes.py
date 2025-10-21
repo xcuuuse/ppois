@@ -20,6 +20,7 @@ class Game:
         self.__symbol = 'X'
 
     def __getitem__(self, pos):
+
         row, column = pos
         if 0 <= row < self.__field_size and 0 <= column < self.__field_size:
             return self.__field[row][column]
@@ -39,6 +40,7 @@ class Game:
 
     @property
     def symbol(self):
+
         return self.__symbol
 
     @property

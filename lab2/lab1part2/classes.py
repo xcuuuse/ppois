@@ -240,4 +240,3 @@ class Polynomial:
         quotient_degree = max(final.keys()) if final else 0
         quotient_coefficients = [final.get(i, 0) for i in range(quotient_degree, -1, -1)]
         return Polynomial(quotient_degree, quotient_coefficients)
-

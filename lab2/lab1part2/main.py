@@ -109,6 +109,5 @@ while True:
         case 11:
             print("Goodbye")
             break
-
-
-
+        case _:
+            print("Invalid choice, try again")

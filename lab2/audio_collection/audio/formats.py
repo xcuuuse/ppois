@@ -1,8 +1,5 @@
-from audio.base import Audiofile
-
-
 class AudioFormat:
-    def __init__(self, extension: str): # 13
+    def __init__(self, extension: str):
         self.__extension = extension
 
     @property
@@ -23,17 +20,16 @@ class Codec:
     def supported_formats(self):
         return self.__supported_formats
 
+    def get_formats(self):
+        forms = []
+        for i in self.supported_formats:
+            forms.append(i.extension)
+        return forms
 
-class Converter:
-    def __init__(self, default_codec: Codec):
-        self.__default_codec = default_codec
+# find the usage of codec
 
-    @property
-    def default_codec(self):
-        return self.__default_codec
 
-    def convert(self, audio: Audiofile, target_format: AudioFormat):
-        pass
+
 
 
 
