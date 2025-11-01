@@ -1,5 +1,5 @@
-from playlists.playlist import Playlist
-from base.track import Track, TrackId
+from Playlists.playlist import Playlist
+from Base.track import Track, TrackId
 
 
 class Collection:

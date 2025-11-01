@@ -1,4 +1,4 @@
-from base.albums.album import Album
+from Base.Albums.album import Album
 
 
 class Artist:

@@ -1,5 +1,5 @@
-from playlists.collections.collection import Playlist, Collection
-from base.genre import Genre
+from Playlists.Collections.collection import Playlist, Collection
+from Base.genre import Genre
 
 
 class GenreCollection(Collection):

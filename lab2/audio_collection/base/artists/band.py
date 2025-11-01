@@ -1,6 +1,6 @@
-from base.artists.artist import Artist
-from base.artists.musician import Musician
-from base.albums.album import Album
+from Base.Artists.artist import Artist
+from Base.Artists.musician import Musician
+from Base.Albums.album import Album
 
 
 class Band(Artist):

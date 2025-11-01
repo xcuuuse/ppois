@@ -1,0 +1,3 @@
+class MediaLibrary:
+    pass
+

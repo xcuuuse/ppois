@@ -1,6 +1,6 @@
-from base.albums.album import Album
-from base.track import Track
-from base.genre import Genre
+from Base.Albums.album import Album
+from Base.track import Track
+from Base.genre import Genre
 
 
 class LiveAlbum(Album):

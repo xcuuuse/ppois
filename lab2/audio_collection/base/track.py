@@ -1,5 +1,5 @@
-from base.genre import Genre
-from id_manage.track_id import TrackId
+from Base.genre import Genre
+from IdManage.track_id import TrackId
 
 class Track:
     def __init__(self, title: str, duration: int, genre: Genre):
