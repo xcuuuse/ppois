@@ -1,9 +1,16 @@
 from Playlists.playlist import Playlist
-from Base.track import Track, TrackId
+from MainEntities.track import Track, TrackId
 
 
 class Collection:
+    """
+    Collection base class
+    """
     def __init__(self, playlist: Playlist):
+        """
+        Constructor
+        :param playlist: A playlist to create collection from
+        """
         self.__playlist = playlist
 
     @property

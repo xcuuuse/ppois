@@ -1,15 +1,24 @@
-from Base.track import Track
+from MainEntities.track import Track
 from Exceptions.track_adding_error import TrackAddingError
 from Playback.queue import Queue
+from Playlists.history import History
 
 
 class Playlist:
+    """
+    Playlist base class
+    """
     def __init__(self, name: str):
+        """
+        Constructor
+        :param name: Playlist name
+        """
         self.__name = name
-        self.__tracks = []
-        self.__duration = sum([i.duration for i in self.__tracks])
-        self.__current_track = Track
+        self._tracks: list[Track] = []
+        self._duration = sum([i.duration for i in self._tracks])
+        self._current_track: Track | None = None
         self.__queue = Queue()
+        self.__history = History()
 
     @property
     def name(self):
@@ -17,44 +26,70 @@ class Playlist:
 
     @property
     def current_track(self):
-        return self.__current_track
+        return self._current_track
 
     @property
     def tracks(self):
-        return [i.title for i in self.__tracks]
+        return self._tracks
 
     @property
     def duration(self):
-        return self.__duration
+        return self._duration
 
     @property
     def queue(self):
         return self.__queue.show_queue()
 
+    @property
+    def history(self):
+        self.__history.append(self.current_track)
+        return self.__history
+
     def get_formated_duration(self):
-        minutes = self.__duration // 60
-        seconds = self.__duration - minutes * 60
-        return f"{minutes}:{seconds}" if seconds >= 10 else f"{minutes}:0{seconds}"
+        """
+        Returns playlist duration as minutes:seconds
+        :return:
+        """
+        minutes = self._duration // 60
+        seconds = self._duration % 60
+        return f"{minutes}:{seconds:02d}"
 
     def add_track(self, track: Track):
-        if track.track_id in [i.track_id for i in self.__tracks]:
+        """
+        Adds track to playlist
+        :param track: Track to add
+        :return: Updated playlist tracks
+        """
+        if (track.track_id in [i.track_id for i in self._tracks] or
+                track.normalized_name in [i.normalized_name for i in self._tracks]):
             raise TrackAddingError("The track is already in playlist")
-        self.__tracks.append(track)
+
+        self._tracks.append(track)
+        self._duration += track.duration
+        if self._current_track is None:
+            self._current_track = track
+
+    def delete_track(self, track: Track):
+        """
+        Deletes a track from playlist
+        :param track: Track to delete
+        :return: Updated playlist tracks
+        """
+        if track in self._tracks:
+            self._tracks.remove(track)
 
     def playlist_tracks(self):
-        return [i.title for i in self.__tracks]
-
-    def add_to_queue(self, track: Track, after_current: bool = True):
-        if track.track_id not in [i.track_id for i in self.__tracks]:
-            raise TrackAddingError("Track must be in playlist before adding to queue")
-        if after_current:
-            self.__queue.add_to_queue(track, self.__current_track)
-        else:
-            self.__queue.add_to_queue(track, None)
+        """
+        Returns all playlist tracks
+        :return: playlist tracks
+        """
+        return [i.title for i in self._tracks]
 
     def next_track(self):
+        """
+        Goes to next track
+        """
         next_track = self.__queue.queue_next()
         if next_track:
-            self.__current_track = next_track
-        return self.current_track.title
-
+            self._current_track = next_track
+        return self.current_track.title if self._current_track else None

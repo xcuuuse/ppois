@@ -1,4 +1,13 @@
-.idea
-audio_collection/.venv
-**/pycache/
-audio_collection/pycache
+.idea/
+audio_collection/.idea/
+__pycache__/
+**/__pycache__/
+audio_collection/__pycache__/
+.pytest_cache/
+audio_collection/.pytest_cache/
+audio_collection/.venv/
+.coverage
+html/
+latex/
+audio_collection/__pycache__/
+Doxyfile

@@ -1,19 +1,38 @@
 from UserManage.username import Username
 
 
-class NameValidator:
+class UsernameValidator:
+    """
+    Username validator class
+    """
     def __init__(self, username: Username):
+        """
+        Constructor
+        :param username: Username
+        """
         self.__username = username
 
     @property
     def username(self):
         return self.__username
 
-    def is_valid(self):
+    @staticmethod
+    def is_valid(username: Username):
+        """
+        Checks if the username is valid
+        :param username: Username
+        :return: the username is valid
+        """
+        allowed = set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-")
         return (
-                3 <= len(self.__username.username) <= 20 and
-                self.__username.username.isalnum()
+            3 <= len(str(username)) <= 20
+            and all(c in allowed for c in str(username))
         )
 
     def equals(self, other: Username):
-        return self.__username == other.username
+        """
+        Compares two usernames
+        :param other: Username to compare
+        :return: username is equal to other username
+        """
+        return self.__username.username == other.username
