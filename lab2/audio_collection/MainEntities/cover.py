@@ -1,7 +1,6 @@
 from MainEntities.track import Track
 from MainEntities.genre import Genre
 from MainEntities.Artists.artist import Artist
-from MainEntities.duration import Duration
 
 
 class Cover(Track):

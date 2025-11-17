@@ -34,5 +34,18 @@ class Label:
     def add_artist(self, artist: Artist):
         self.__artists.append(artist)
 
+    def remove_artist(self, artist: Artist):
+        """
+        Removes an artist from the label if present
+        :param artist: Artist instance
+        """
+        if artist in self.__artists:
+            self.__artists.remove(artist)
 
+    def get_artist_info(self):
+        """
+        Returns information about all artists signed to the label
+        :return: list of dicts with artist names and number of albums
+        """
+        return [{"name": artist.name, "albums_count": len(artist.albums)} for artist in self.__artists]
 

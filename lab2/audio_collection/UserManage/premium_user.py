@@ -3,7 +3,7 @@ from Playlists.Collections.genre_collection import Genre, GenreCollection
 from Playlists.playlist import Playlist
 from UserManage.user_profile import UserProfile
 from Subscription.subscription import Subscription
-
+from Playlists.Collections.collection import Collection
 
 class PremiumUser(User):
     """
@@ -20,7 +20,7 @@ class PremiumUser(User):
         self.__playlists = []
         self.__subscription = subscription
         self.__max_playlists = 20
-        self.__collections = []
+        self.__collections: list[Collection] = []
 
     @property
     def months(self):
@@ -38,3 +38,6 @@ class PremiumUser(User):
         """
         if playlist in self.__playlists:
             self.__collections.append(GenreCollection(playlist, genre))
+
+    def extend_subscription(self, months):
+        self.__subscription.extend_subscription(months)

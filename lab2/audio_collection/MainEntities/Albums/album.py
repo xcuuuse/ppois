@@ -63,5 +63,21 @@ class Album:
         return self._likes
 
     def get_liked(self):
-
         self._likes += 1
+
+    def get_info(self):
+        return f"{self._title}. [{self._tracks}]"
+
+    def average_rating(self):
+        if not self._rating:
+            return 0
+        return sum(r for r in self._rating) / len(self._rating)
+
+    def add_rating(self, rating: Rating):
+        if 1 <= int(rating) <= 5:
+            self._rating.append(rating)
+        else:
+            raise ValueError("Rating must be between 1 and 5")
+
+    def total_duration(self):
+        return sum(track.duration.duration for track in self._tracks)

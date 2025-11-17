@@ -110,3 +110,23 @@ class Track:
         :return: Track rating
         """
         self.__statistics.ratings.append(Rating(rate))
+
+    def play(self):
+        """
+        Simulates playing the track
+        :return: String with track playback info
+        """
+        return f"Playing track: {self.__title}"
+
+    def add_like(self):
+        """
+        Adds a like to the track
+        """
+        self.__statistics.likes.append(1)
+
+    def get_total_comments(self):
+        """
+        Returns the total number of comments for the track
+        :return: Number of comments
+        """
+        return len(self.__statistics.comments)

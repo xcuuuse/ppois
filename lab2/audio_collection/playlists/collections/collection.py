@@ -1,5 +1,4 @@
 from Playlists.playlist import Playlist
-from MainEntities.track import Track, TrackId
 
 
 class Collection:

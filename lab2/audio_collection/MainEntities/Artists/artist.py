@@ -42,3 +42,20 @@ class Artist:
     def get_followed(self):
         self._followers += 1
 
+    def add_album(self, album: "Album"):
+        if album not in self._albums:
+            self._albums.append(album)
+
+    def remove_album(self, album: "Album"):
+        if album in self._albums:
+            self._albums.remove(album)
+
+    def total_likes(self):
+        return sum(album.likes for album in self._albums)
+
+    def total_tracks(self):
+        return sum(len(album.tracks) for album in self._albums)
+
+    def get_albums_by_year(self, year: int):
+        return [album for album in self._albums if album.year == year]
+
