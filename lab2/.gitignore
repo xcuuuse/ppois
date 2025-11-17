@@ -9,5 +9,6 @@ audio_collection/.venv/
 .coverage
 html/
 latex/
+
 audio_collection/__pycache__/
 Doxyfile
