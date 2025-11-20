@@ -5,3 +5,4 @@ TABLE: standard_table, vip_table
 HALL: base_hall, vip_hall, smoking_hall, banquet_hall
 28"""
 
+
