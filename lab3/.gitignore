@@ -1,0 +1,12 @@
+.idea/
+Restaurant/.idea/
+__pycache__/
+**/__pycache__/
+Restaurant/__pycache__/
+.pytest_cache/
+Restaurant/.pytest_cache/
+Restaurant/.venv/
+.coverage
+
+
+Restaurant/__pycache__/

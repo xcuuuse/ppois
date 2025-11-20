@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from MainEntities.Menu.menu_item import MenuItem
+from Menu.menu_item import MenuItem
 
 @dataclass
 class OrderItem:

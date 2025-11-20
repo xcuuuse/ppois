@@ -1,5 +1,5 @@
-from MainEntities.order_item import OrderItem
-from MainEntities.table import Table
+from Order.order_item import OrderItem
+from Hall.table import Table
 
 
 class Order:

@@ -1,5 +1,4 @@
-from dataclasses import dataclass
-from MainEntities.Menu.menu_item import MenuItem
+from Menu.menu_item import MenuItem
 from Exceptions.item_error import ItemError
 
 
