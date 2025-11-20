@@ -13,11 +13,11 @@ from MainEntities.Albums.single import Single
 from MainEntities.label import Label
 from MainEntities.duration import Duration
 
+
 def test_city():
     from MainEntities.city import City
     first_city = City("Minsk")
     assert first_city.city == "Minsk"
-
 
 
 def test_album():
@@ -45,6 +45,7 @@ def test_album_definer():
     definer2 = AlbumDefiner.define(album2)
     from MainEntities.Albums.ep import Ep
     assert isinstance(definer2, Ep)
+
 
 def test_genre():
     genre = Genre("nu metal")
