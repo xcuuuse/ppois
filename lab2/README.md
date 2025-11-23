@@ -1,5 +1,4 @@
 # Аудио коллекция
-[**Документация**](file:///E:/LABS_THIRD_SEM/PPOIS/lab2/html/index.html)
 
 **LogIn** 4 1 -> User, Password  
 
