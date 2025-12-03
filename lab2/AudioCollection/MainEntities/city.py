@@ -7,7 +7,7 @@ class City:
         Constructor
         :param city: City name
         """
-        self.city = city
+        self.__city = city
 
     def __str__(self):
-        return self.city
+        return self.__city

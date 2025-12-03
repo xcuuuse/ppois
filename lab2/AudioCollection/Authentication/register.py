@@ -28,7 +28,7 @@ class Register:
         else:
             users = []
         username_str = user.username
-        if not UsernameValidator.is_valid(user.username):
+        if not UsernameValidator.is_valid(username_str):
             raise InvalidUsernameError("Invalid username")
         if username_str in users:
             raise RegisterError("The user already exists")
@@ -59,7 +59,7 @@ class Register:
         else:
             passwords = {}
 
-        passwords[user.username.username] = password.get_password_only_for_reg()
+        passwords[user.username] = password.get_password_only_for_reg()
 
         with open(filepath, "w", encoding="utf-8") as file:
             json.dump(passwords, file, ensure_ascii=False, indent=4)

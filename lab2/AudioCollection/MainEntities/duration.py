@@ -9,8 +9,7 @@ class Duration:
         """
         self.__duration = duration
 
-    @property
-    def duration(self):
+    def __int__(self):
         return self.__duration
 
 

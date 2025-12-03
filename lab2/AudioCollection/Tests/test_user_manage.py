@@ -59,15 +59,14 @@ def test_user():
 
 
 def test_premium_user():
-    from UserManage.user import User
     from UserManage.username import Username
     from UserManage.user_profile import UserProfile
     from MainEntities.date import Date
     from UserManage.premium_user import PremiumUser
+    from Subscription.subscription import Subscription
     username = Username("fourth_user")
     profile = UserProfile("bio", Date(2000, 1, 1), "Belarus")
-    user = User(username, profile)
-    user.add_to_amount(1000)
-    prem_user = user.buy_subscription(6)
-    assert isinstance(prem_user, PremiumUser)
-
+    prem_user = PremiumUser(username, profile, Subscription(12))
+    prem_user.add_to_amount(1000)
+    assert prem_user.amount == 1000
+    assert prem_user.months == 12

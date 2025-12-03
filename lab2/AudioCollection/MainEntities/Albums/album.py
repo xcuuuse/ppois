@@ -40,7 +40,7 @@ class Album:
 
     @property
     def genre(self):
-        return self._genre.genre_name
+        return self._genre
 
     @property
     def year(self):
@@ -74,10 +74,10 @@ class Album:
         return sum(r for r in self._rating) / len(self._rating)
 
     def add_rating(self, rating: Rating):
-        if 1 <= int(rating) <= 5:
-            self._rating.append(rating)
-        else:
-            raise ValueError("Rating must be between 1 and 5")
+        from Exceptions.rating_error import RatingError
+        if 1 > int(rating) or 5 < int(rating):
+            raise RatingError("The value has to be between 1 and 5")
+        self._rating = rating
 
     def total_duration(self):
         return sum(track.duration.duration for track in self._tracks)

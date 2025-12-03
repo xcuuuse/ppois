@@ -1,5 +1,6 @@
 from Exceptions.equalizer_settings_error import EqualizerSettingsError
 
+
 class Equalizer:
     """
     Equalizer class
@@ -30,5 +31,3 @@ class Equalizer:
         self.__mid = mid
         self.__treble = treble
 
-    def __str__(self):
-        return f"Bass:{self.__bass}, Mid:{self.__mid}, Treble:{self.__treble}"

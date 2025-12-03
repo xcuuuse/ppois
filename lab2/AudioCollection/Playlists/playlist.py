@@ -38,7 +38,7 @@ class Playlist:
 
     @property
     def queue(self):
-        return self.__queue.show_queue()
+        return self.__queue
 
     @property
     def history(self):
@@ -65,7 +65,7 @@ class Playlist:
             raise TrackAddingError("The track is already in playlist")
 
         self._tracks.append(track)
-        self._duration += track.duration
+        self._duration += int(track.duration)
         if self._current_track is None:
             self._current_track = track
 

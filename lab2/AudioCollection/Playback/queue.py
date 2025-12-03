@@ -1,6 +1,5 @@
 from MainEntities.track import Track
 
-
 class Queue:
     """
     Queue class

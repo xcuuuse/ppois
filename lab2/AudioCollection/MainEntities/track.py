@@ -31,7 +31,7 @@ class Track:
 
     @property
     def duration(self):
-        return self.__duration.duration
+        return self.__duration
 
     @property
     def genre(self):
@@ -63,9 +63,6 @@ class Track:
     def equalizer(self):
         return self.__equalizer
 
-    @property
-    def likes(self): return len(self.__statistics.likes)
-
     def adjust_equalizer(self, bass=None, mid=None, treble=None):
         """
         A method to set the equalizer settings
@@ -81,7 +78,7 @@ class Track:
         A method to get track duration as minutes:seconds
         :return: track formated duration
         """
-        total_seconds = self.__duration.duration
+        total_seconds = int(self.__duration)
         minutes = total_seconds // 60
         seconds = total_seconds % 60
         return f"{minutes}:{seconds:02d}"
@@ -101,7 +98,7 @@ class Track:
         :return: Updated statistics
         """
         from Community.comment import Comment
-        self.__statistics.comments.append(Comment(text))
+        self.__statistics.add_comment(Comment(text))
 
     def add_rate(self, rate: int):
         """
@@ -109,7 +106,7 @@ class Track:
         :param rate: Rate from 1 to 5
         :return: Track rating
         """
-        self.__statistics.ratings.append(Rating(rate))
+        self.__statistics.add_rating(Rating(rate))
 
     def play(self):
         """
@@ -118,15 +115,3 @@ class Track:
         """
         return f"Playing track: {self.__title}"
 
-    def add_like(self):
-        """
-        Adds a like to the track
-        """
-        self.__statistics.likes.append(1)
-
-    def get_total_comments(self):
-        """
-        Returns the total number of comments for the track
-        :return: Number of comments
-        """
-        return len(self.__statistics.comments)

@@ -23,7 +23,7 @@ class FavouriteTracks(Playlist, Favourite):
             raise TrackAddingError("Track already in favourites")
         self._tracks.append(track)
         self._objects.append(track)
-        self._duration += track.duration
+        self._duration += int(track.duration)
 
         if self._current_track is None:
             self._current_track = track

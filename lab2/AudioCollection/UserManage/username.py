@@ -13,6 +13,4 @@ class Username:
     def username(self):
         return self.__username
 
-    def __str__(self):
-        return self.__username
     

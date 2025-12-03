@@ -82,6 +82,3 @@ class MediaLibrary:
         if playlist in self.__playlists:
             self.__playlists.remove(playlist)
             self.__playlists.insert(0, playlist)
-
-
-

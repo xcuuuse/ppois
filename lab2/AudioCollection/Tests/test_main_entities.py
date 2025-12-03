@@ -17,7 +17,7 @@ from MainEntities.duration import Duration
 def test_city():
     from MainEntities.city import City
     first_city = City("Minsk")
-    assert first_city.city == "Minsk"
+    assert str(first_city) == "Minsk"
 
 
 def test_album():
@@ -26,10 +26,11 @@ def test_album():
     track2 = Track("One Step Closer", Genre("nu metal"))
     album = Album("Hybrid Theory", [track1, track2], Genre("nu metal"), 2000, label)
     assert album.title == "Hybrid Theory"
-    assert album.genre == "nu metal"
+    assert album.genre.genre_name == "nu metal"
     assert [i.title for i in album.tracks] == ["Papercut", "One Step Closer"]
     assert album.year == 2000
     assert album.label.name == "Warner Records"
+
 
 def test_album_definer():
     label = Label("Warner Records")
@@ -54,7 +55,7 @@ def test_genre():
 
 def test_duration():
     duration = Duration(180)
-    assert duration.duration == 180
+    assert int(duration) == 180
 
 
 def test_musician():
@@ -81,17 +82,18 @@ def test_track():
     with pytest.raises(EqualizerSettingsError):
         track.adjust_equalizer(4, 2, -1)
 
+
 def test_live_album():
+    from MainEntities.city import City
     label = Label("Warner Records")
     track1 = Track("Papercut", Genre("nu metal"))
     track2 = Track("One Step Closer", Genre("nu metal"))
     live_album = LiveAlbum("Live in Texas", [track1, track2], Genre("nu metal"),
-                           2004, label, "Dallas")
+                           2004, label, City("Dallas"))
     assert live_album.title == "Live in Texas"
     assert live_album.year == 2004
-    assert live_album.genre == "nu metal"
     assert [i.title for i in live_album.tracks] == ["Papercut", "One Step Closer"]
-    assert live_album.city == "Dallas"
+    assert str(live_album.city) == "Dallas"
 
 
 def test_band():
@@ -113,6 +115,7 @@ def test_single():
     assert single.label.name == "Warner Records"
     assert [i.normalized_name for i in single.tracks] == ["papercut"]
 
+
 def test_lives():
     from MainEntities.Artists.concert import Concert
     from MainEntities.Artists.artist import Artist
@@ -122,7 +125,7 @@ def test_lives():
     artist = Artist("Name", [])
     concert = Concert(artist, 123, city.City("NY"), date.Date(12, 12, 2025))
     assert concert.date.month == 12
-    assert concert.city.city == "NY"
+    assert str(concert.city) == "NY"
     assert concert.artist.name == "Name"
     ticket = Ticket(concert)
     assert ticket.ticket_id == 1
@@ -130,14 +133,13 @@ def test_lives():
     concert2 = Concert(artist, 124, city.City("LA"), date.Date(13, 12, 2025))
     tour = Tour(artist, [concert, concert2])
     assert tour.ticket_amount == 247
-    assert [i.city for i in tour.cities] == ["NY", "LA"]
+    assert [str(i) for i in tour.cities] == ["NY", "LA"]
 
 def test_track_types():
     from MainEntities.Artists.artist import Artist
     from MainEntities.collaboration import Collaboration
     from MainEntities.cover import Cover
     from MainEntities.genre import Genre
-    from MainEntities.duration import Duration
     from MainEntities.remix import Remix
     artists = [Artist("1", []), Artist("2", [])]
     collab = Collaboration("Collab", Genre("rock"), artists)

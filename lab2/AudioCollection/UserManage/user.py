@@ -59,7 +59,7 @@ class User:
         return self.__likes
 
     @property
-    def favourite_tracks(self) -> FavouriteTracks:
+    def favourite_tracks(self):
         return self.__favourite_tracks.tracks
 
     @property
@@ -118,31 +118,6 @@ class User:
         :param add_value: Value to add
         """
         self.__amount.add_to_amount(add_value)
-
-    def buy_subscription(self, months: int):
-        """
-        Buys a subscription and makes a premium user
-        :param months: Months to buy a subscription to
-        :return:
-        """
-        total_cost = months * self.__subscription.month_cost
-        if self.__amount.amount < total_cost:
-            raise ResourcesError("You can't activate subscription now")
-
-        self.__subscription = Subscription(months)
-        self.__amount.subtract_from_amount(total_cost)
-        from UserManage.premium_user import PremiumUser
-        prem_user = PremiumUser(self.__username, self.__profile, self.__subscription)
-        prem_user._User__playlists = self.playlists
-        prem_user._User__media = self.__media
-        prem_user._User__amount = self.__amount
-        prem_user._User__likes = self.__likes.copy()
-        prem_user._User__favourite_tracks = self.__favourite_tracks
-        prem_user._User__comments = self.__comments.copy()
-        prem_user._User__tickets = self.__tickets.copy()
-        prem_user._user_id = self._user_id
-
-        return prem_user
 
     def comment_track(self, track, text: str):
         """

@@ -28,7 +28,6 @@ def test_favourite():
 
 def test_media():
     from Playlists.media_library import MediaLibrary
-    from MainEntities.Artists.artist import Artist
     from MainEntities.Albums.album import Album
     from MainEntities.track import Track
     track1 = Track("Dont stay", None)

@@ -14,19 +14,24 @@ class TrackStatistics:
         self.__ratings: list[Rating] = []
 
     @property
-    def streams(self): return self.__streams
+    def streams(self):
+        return self.__streams
 
     @property
-    def likes(self): return self.__likes
+    def likes(self):
+        return self.__likes
 
     @property
-    def comments(self): return self.__comments
+    def comments(self):
+        return self.__comments
 
     @property
-    def ratings(self): return self.__ratings
+    def ratings(self):
+        return self.__ratings
 
     @property
-    def rating(self): return sum(self.__ratings) / len(self.__ratings)
+    def rating(self):
+        return sum(self.__ratings) / len(self.__ratings)
 
     @property
     def stats(self):

@@ -18,9 +18,9 @@ class AlbumDefiner:
         tracks_count = len(album.tracks)
 
         if tracks_count <= 3:
-            return Single(album.title, album.tracks, album._genre, album.year, album.label)
+            return Single(album.title, album.tracks, album.genre, album.year, album.label)
         elif 4 <= tracks_count <= 6:
-            return Ep(album.title, album.tracks, album._genre, album.year, album.label)
+            return Ep(album.title, album.tracks, album.genre, album.year, album.label)
         else:
-            return StudioAlbum(album.title, album.tracks, album._genre, album.year, album.label)
+            return StudioAlbum(album.title, album.tracks, album.genre, album.year, album.label)
 
